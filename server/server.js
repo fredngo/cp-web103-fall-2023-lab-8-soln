@@ -1,8 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import tripRoutes from './routes/trips.js'
-
+import activityRoutes from './routes/activities.js'
 import destinationRoutes from './routes/destinations.js'
+
 
 const app = express()
 
@@ -14,8 +15,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/trips', tripRoutes)
-
+app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationRoutes)
+
 
 const PORT = process.env.PORT || 3001
 
