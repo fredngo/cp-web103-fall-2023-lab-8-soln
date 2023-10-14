@@ -24,8 +24,15 @@ const getTripsDestinations = async (request, response) => {
 
 const getAllTrips = async (request, response) => {
   try {
+    const query = `
+      SELECT *
+      FROM trips
+      INNER JOIN trips_destinations ON trips_destinations.trip_id = trips.id
+      WHERE trips_destinations.destination_id = $1
+    `
+
     const destination_id = parseInt(request.params.destination_id)
-    const results = await pool.query("SELECT t.* FROM trips_destinations td, trips t WHERE td.trip_id = t.id AND td.destination_id = $1", [destination_id])
+    const results = await pool.query(query, [destination_id])
     response.status(200).json(results.rows)
   } catch (error) {
     response.status(409).json({ error: error.message })
@@ -34,8 +41,15 @@ const getAllTrips = async (request, response) => {
 
 const getAllDestinations  = async (request, response) => {
   try {
+    const query = `
+      SELECT *
+      FROM destinations
+      INNER JOIN trips_destinations ON trips_destinations.destination_id = destinations.id
+      WHERE trips_destinations.trip_id = $1
+    `
+
     const trip_id = parseInt(request.params.trip_id)
-    const results = await pool.query("SELECT d.* FROM trips_destinations td, destinations d WHERE td.destination_id = d.id AND td.trip_id = $1", [trip_id])
+    const results = await pool.query(query, [trip_id])
     response.status(200).json(results.rows)
   } catch (error) {
     response.status(409).json({ error: error.message })
