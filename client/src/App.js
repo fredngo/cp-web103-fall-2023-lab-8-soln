@@ -19,8 +19,13 @@ const App = () => {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
-
-
+    const fetchTrips = async () => {
+      const response = await fetch('/api/trips')
+      const data = await response.json()
+      setTrips(data)
+    }
+  
+    fetchTrips()
   }, []);
 
   // Sets up routes
