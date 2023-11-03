@@ -5,6 +5,7 @@ import tripRoutes from './routes/trips.js'
 import activityRoutes from './routes/activities.js'
 import destinationRoutes from './routes/destinations.js'
 import tripDestinationRoutes from './routes/trips_destinations.js'
+import userTripRoutes from './routes/users_trips.js'
 
 import passport from 'passport'
 import session from 'express-session'
@@ -50,6 +51,7 @@ app.use('/api/trips', tripRoutes)
 app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationRoutes)
 app.use('/api/trips-destinations', tripDestinationRoutes)
+app.use('/api/users-trips', userTripRoutes)
 
 const PORT = process.env.PORT || 3001
 
