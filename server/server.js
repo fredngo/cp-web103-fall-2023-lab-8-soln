@@ -9,6 +9,7 @@ import tripDestinationRoutes from './routes/trips_destinations.js'
 import passport from 'passport'
 import session from 'express-session'
 import { GitHub } from './config/auth.js'
+import authRoutes from './routes/auth.js'
 
 const app = express()
 
@@ -41,6 +42,10 @@ app.get('/', (req, res) => {
   res.redirect('http://localhost:3000')
 })
 
+// authentication routes
+app.use('/auth', authRoutes)
+
+// app routes
 app.use('/api/trips', tripRoutes)
 app.use('/api/activities', activityRoutes)
 app.use('/api/destinations', destinationRoutes)
