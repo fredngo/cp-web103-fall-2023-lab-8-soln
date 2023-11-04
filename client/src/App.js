@@ -37,6 +37,13 @@ const App = () => {
     fetchTrips()
   }, []);
 
+  const logout = async () => {
+    const url = `${API_URL}/auth/logout`
+    const response = await fetch(url, { credentials: 'include' })
+    const json = await response.json()
+    window.location.href = '/'
+  }
+
   // Sets up routes
   let element = useRoutes([
     {
@@ -98,6 +105,7 @@ const App = () => {
             <Link to="/"><button className="headerBtn">Explore Trips</button></Link>
             <Link to="/destinations"><button className="headerBtn">Explore Destinations</button></Link>
             <Link to="/trip/new"><button className="headerBtn"> + Add Trip </button></Link>
+            <button onClick={logout} className='headerBtn'>Logout</button>
           </div>
         : <></>
       }
