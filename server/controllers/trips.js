@@ -10,6 +10,14 @@ const createTrip = async (req, res) => {
       RETURNING *`,
       [title, description, img_url, num_days, start_date, end_date, total_cost]
     )
+
+    const tripUser = await pool.query(
+      `INSERT INTO users_trips (trip_id, username)
+      VALUES($1, $2)
+      RETURNING *`,
+      [results.rows[0].id, username]
+    )
+
     res.status(201).json(results.rows[0])
   }
   catch (error) {
@@ -61,6 +69,12 @@ const deleteTrip = async (req, res) => {
 
     const activity_deletion = await pool.query(
       `DELETE FROM activities
+      WHERE trip_id = $1`,
+      [id]
+    )
+
+    const user_removal = await pool.query(
+      `DELETE FROM users_trips
       WHERE trip_id = $1`,
       [id]
     )
