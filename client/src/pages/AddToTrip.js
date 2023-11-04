@@ -20,7 +20,9 @@ const AddToTrip = (props) => {
                          id={trip.id} 
                          title={trip.title} 
                          description={trip.description} 
-                         img_url={trip.img_url}  />
+                         img_url={trip.img_url}
+                         api_url={props.api_url}
+                    />
                 ) : <h3 className="noResults">{'No Trips Yet 😞'}</h3>
             }
         </div>  

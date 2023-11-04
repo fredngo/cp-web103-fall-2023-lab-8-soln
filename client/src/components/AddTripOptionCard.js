@@ -17,7 +17,7 @@ const AddTripOptionCard = (props) =>  {
       body: JSON.stringify({trip_id: props.id, destination_id: destination_id})
     }
 
-    await fetch('/api/trips-destinations', options)
+    await fetch(`${props.api_url}/api/trips-destinations`, options)
     window.location.href = '/'
   }
 

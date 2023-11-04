@@ -14,13 +14,14 @@ import AddToTrip from './pages/AddToTrip';
 
 
 const App = () => {
+  const API_URL = 'http://localhost:3001'
   
   const [trips, setTrips] = useState([]);
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
     const fetchTrips = async () => {
-      const response = await fetch('/api/trips')
+      const response = await fetch(`${API_URL}/api/trips`)
       const data = await response.json()
       setTrips(data)
     }
@@ -36,31 +37,31 @@ const App = () => {
     },
     {
       path:"/trip/new",
-      element: <CreateTrip />
+      element: <CreateTrip api_url={API_URL} />
     },
     {
       path:"/edit/:id",
-      element: <EditTrip data={trips} />
+      element: <EditTrip data={trips} api_url={API_URL} />
     },
     {
       path:"/destinations",
-      element: <ReadDestinations data={destinations} />
+      element: <ReadDestinations data={destinations} api_url={API_URL} />
     },
     {
       path:"/trip/get/:id",
-      element: <TripDetails data={trips} />
+      element: <TripDetails data={trips} api_url={API_URL} />
     },
     {
       path:"/destination/new/:trip_id",
-      element: <CreateDestination />
+      element: <CreateDestination api_url={API_URL} />
     },
     {
       path:"/activity/create/:trip_id",
-      element: <CreateActivity />
+      element: <CreateActivity api_url={API_URL} />
     },
     {
       path:"/destinations/add/:destination_id",
-      element: <AddToTrip data={trips}/>
+      element: <AddToTrip data={trips} api_url={API_URL} />
     }
   ]);
 
