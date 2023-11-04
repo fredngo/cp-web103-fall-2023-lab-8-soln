@@ -80,7 +80,7 @@ const TripDetails = ({data, api_url}) => {
                 {
                 activities && activities.length > 0 ?
                 activities.map((activity,index) => 
-                    <ActivityBtn id={activity.id} activity={activity.activity} num_votes={activity.num_votes}/>
+                    <ActivityBtn key={index} id={activity.id} activity={activity.activity} num_votes={activity.num_votes}/>
                 ) : ''
                 }
                     <br/>
@@ -90,7 +90,7 @@ const TripDetails = ({data, api_url}) => {
                 {
                 destinations && destinations.length > 0 ?
                 destinations.map((destination,index) => 
-                    <DestinationBtn id={destination.id} destination={destination.destination} />
+                    <DestinationBtn key={index} id={destination.id} destination={destination.destination} />
                 ) : ''
                 }
                     <br/>
