@@ -12,6 +12,7 @@ import CreateActivity from './pages/CreateActivity';
 import AddToTrip from './pages/AddToTrip';
 import Login from './pages/Login'
 import Avatar from './components/Avatar'
+import AddUserToTrip from './pages/AddUserToTrip'
 
 const App = () => {
   const API_URL = 'http://localhost:3001'
@@ -86,12 +87,11 @@ const App = () => {
       element: user && user.id ?
         <AddToTrip user={user} data={trips} api_url={API_URL} /> : <Login api_url={API_URL} />
     },
-    // We haven't written this component yet
-    // {
-    //   path: '/users/add/:trip_id',
-    //   element: user && user.id ?
-    //     <AddUserToTrip user={user}/> : <Login api_url={API_URL} />
-    // },
+    {
+      path: '/users/add/:trip_id',
+      element: user && user.id ?
+        <AddUserToTrip user={user} api_url={API_URL} /> : <Login api_url={API_URL} />
+    },
   ]);
 
   
