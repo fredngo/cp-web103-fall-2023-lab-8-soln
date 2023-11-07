@@ -18,7 +18,6 @@ const App = () => {
   const API_URL = 'http://localhost:3001'
   
   const [trips, setTrips] = useState([]);
-  const [destinations, setDestinations] = useState([]);
   const [user, setUser] = useState([])
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const App = () => {
   const logout = async () => {
     const url = `${API_URL}/auth/logout`
     const response = await fetch(url, { credentials: 'include' })
-    const json = await response.json()
+    await response.json()
     window.location.href = '/'
   }
 
@@ -65,7 +64,7 @@ const App = () => {
     {
       path: '/destinations',
       element: user && user.id ?
-        <ReadDestinations user={user} data={destinations} /> : <Login api_url={API_URL} />
+        <ReadDestinations user={user} /> : <Login api_url={API_URL} />
     },
     {
       path: '/trip/get/:id',
